@@ -23,9 +23,9 @@ client.server = {
     
 };
 
-Client.on("ready", () => {
-    Client.user.setStatus("online");
-    Client.user.setActivity("Les amoureux", { type: "STREAMING" });
+client.on("ready", () => {
+    client.user.setStatus("online");
+    client.user.setActivity("Les amoureux", { type: "STREAMING" });
   });
 
 client.on('error', (error) => console.error(error));
