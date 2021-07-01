@@ -25,7 +25,7 @@ module.exports = class PlayCommand extends Command {
         }
 
         if(!message.client.voice.connections.first()) {
-            return message.say(" :x: Je ne suis pas connécté à un salon vocal. Tape `b!join` pour m'ajouter. ");
+            return message.say(" :x: Je ne suis pas connécté à un salon vocal. Tape `b/join` pour m'ajouter. ");
         }
 
 

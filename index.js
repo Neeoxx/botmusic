@@ -1,9 +1,8 @@
 const { CommandoClient } = require('discord.js-commando');
 const path = require("path");
-require('dotenv').config();
 
 const client = new CommandoClient({
-    commandPrefix: 'b?',
+    commandPrefix: 'b/',
     owner: '340145684453785602',
     invite:'https://discord.gg/R3dGtc6sDw',
 

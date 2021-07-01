@@ -25,7 +25,7 @@ module.exports = class ResumeCommand extends Command {
         }
 
         if(!message.client.voice.connections.first()) {
-            return message.say(" :x: Je ne suis pas connécté à un salon vocal. Tape `b!join` pour m'ajouter. ");
+            return message.say(" :x: Je ne suis pas connécté à un salon vocal. Tape `b/join` pour m'ajouter. ");
         }
 
 
@@ -33,7 +33,7 @@ module.exports = class ResumeCommand extends Command {
             dispatcher.resume();
         }
 
-        return message.say(" :arrow_forward: ta musique est repris ! ");
+        return message.say(" :En train de jouer :notes: ");
     }
    
 }
