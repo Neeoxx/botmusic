@@ -24,9 +24,8 @@ client.server = {
 };
 
 Client.on("ready", () => {
-    console.log("bot opérationnel");
     Client.user.setStatus("online");
-    Client.user.setActivity("Les amoureux", { type: "LISTENING" });
+    Client.user.setActivity("Les amoureux", { type: "STREAMING" });
   });
 
 client.on('error', (error) => console.error(error));
