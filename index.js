@@ -1,6 +1,5 @@
 const { CommandoClient } = require('discord.js-commando');
 const path = require("path");
-require('dotenv').config();
 
 const client = new CommandoClient({
     commandPrefix: 'b!',
@@ -30,4 +29,4 @@ client.once('ready', () => {
 
 client.on('error', (error) => console.error(error));
 
-client.login(process.env.BOTTOKEN);
+client.login(process.env.TOKEN);
