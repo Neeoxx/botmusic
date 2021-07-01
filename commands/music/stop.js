@@ -1,7 +1,7 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
 const {StreamDispatcher} = require('discord.js');
 
-module.exports = class StopCommand extends Command {
+module.exports = class PlayCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'stop',
@@ -30,7 +30,7 @@ module.exports = class StopCommand extends Command {
 
 
         if(dispatcher) {
-            dispatcher.cut();
+            dispatcher.stop();
         }
 
         return message.say(" :stop_button: j'ai coupé ta musique ! ");
