@@ -25,7 +25,7 @@ client.server = {
 
 client.on("ready", () => {
     client.user.setStatus("online");
-    client.user.setActivity("Les amoureux", { type: "STREAMING" });
+    client.user.setActivity("Les amoureux", { type: "LISTENING" });
   });
 
 client.on('error', (error) => console.error(error));
