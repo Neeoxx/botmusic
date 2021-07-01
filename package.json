@@ -1,7 +1,7 @@
 {
   "name": "botmusic",
   "version": "1.0.0",
-  "description": "music bot",
+  "description": "bot music",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,10 +19,7 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "discord.js": "^12.5.3",
-    "discord.js-commando": "github:discordjs/commando",
-    "node-gyp": "^8.1.0",
-    "opusscript": "0.0.8",
-    "rebuild": "^0.1.2",
+    "discord.js-commando": "github:discordjs/Commando",
     "ytdl-core-discord": "^1.3.1"
   }
 }
