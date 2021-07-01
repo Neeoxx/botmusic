@@ -28,9 +28,7 @@ client.on("ready", () => {
     client.user.setActivity("Les amoureux", { type: "LISTENING" });
   });
 
-  client.on("message", message => {
-    if (message.author.bot) return;
-    if (message.channel.type == "dm") return;
-})
+
+client.on('error', (error) => console.error(error));
 
 client.login(process.env.TOKEN);
