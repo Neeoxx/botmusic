@@ -30,7 +30,7 @@ module.exports = class StopCommand extends Command {
 
 
         if(dispatcher) {
-            dispatcher.stop();
+            dispatcher.cut();
         }
 
         return message.say(" :stop_button: j'ai coupé ta musique ! ");
