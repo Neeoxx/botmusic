@@ -23,9 +23,11 @@ client.server = {
     
 };
 
-client.once('ready', () => {
-    console.log(`Connecté en tant que ${client.user.tag} - (${client.user.id})`);
-});
+Client.on("ready", () => {
+    console.log("bot opérationnel");
+    Client.user.setStatus("online");
+    Client.user.setActivity("Les amoureux", { type: "LISTENING" });
+  });
 
 client.on('error', (error) => console.error(error));
 
