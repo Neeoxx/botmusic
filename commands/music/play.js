@@ -1,6 +1,6 @@
 const { VoiceConnection } = require('discord.js');
 const { Command, CommandoMessage } = require('discord.js-commando');
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 
 module.exports = class PlayCommand extends Command {
     constructor(client) {

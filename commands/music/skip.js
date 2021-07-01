@@ -1,5 +1,5 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 
 module.exports = class SkipCommand extends Command {
     constructor(client) {
