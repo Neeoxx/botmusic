@@ -25,9 +25,9 @@ module.exports = class PlayCommand extends Command {
     /**
      * 
      * @param {CommandoMessage} message 
-     * @param {string} query
+     * @param {String} query
      */
-    async run(message, { query }) {
+    async run(message, { query } ) {
         await message.member.voice.channel.join().then((connection) => {
             this.runVideo(message, connection, query);
         });
