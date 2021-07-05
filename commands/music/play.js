@@ -30,7 +30,7 @@ module.exports = class PlayCommand extends Command {
         await message.member.voice.channel.join().then((connection) => {
             if(server.currentVideo.url !=""){
                 server.queue.push({title:"", url: query });
-                return message.say(" Ajoutter à la liste d'attente ! ");
+                return message.say(" Ajouter à la liste d'attente ! ");
             }
             server.currentVideo = {title:"", url: query }
             this.runVideo(message, connection, query);
