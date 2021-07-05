@@ -1,5 +1,5 @@
 const { Command, CommandoMessage } = require("discord.js-commando");
-const { StreamDispatcher } = require("discord.js");
+const { StreamDispatcher } = require('discord.js');
 
 module.exports = class PauseCommand extends Command {
     constructor(client) {
@@ -30,8 +30,8 @@ module.exports = class PauseCommand extends Command {
                 return message.say(":x: Je ne suis pas connecté à un salon vocal. tape `b/join` pour m'ajouter ")
             }
 
-            if(dispatcher){
-            dispatcher.pause();
+            if(dispatcher) {
+                dispatcher.pause();
             }
 
             return message.say(" :pause_button: Pause :thumbup: ")
