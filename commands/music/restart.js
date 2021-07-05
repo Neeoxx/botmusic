@@ -1,13 +1,13 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
 const {StreamDispatcher} = require('discord.js');
 
-module.exports = class ResumeCommand extends Command {
+module.exports = class PlayCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'resume',
+            name: 'restart',
             group: 'music',
-            memberName: 'resume',
-            description: 'remet en lecture ta musique',
+            memberName: 'restart',
+            description: 'remet ta musique au début',
         });
     }
     /**
@@ -30,10 +30,9 @@ module.exports = class ResumeCommand extends Command {
 
 
         if(dispatcher) {
-        dispatcher.continue();
+        dispatcher.restart();
         }
 
-        return message.say(" En train de jouer :notes: ");
+        return message.say(" Ta musique se relance :notes: ");
     }
-   
 }
