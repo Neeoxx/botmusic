@@ -19,7 +19,7 @@ module.exports = class PlayCommand extends Command {
         /**
          * @type StreamDispatcher
          */
-        
+        const dispatcher = message.client.server.dispatcher;
         if(!message.member.voice.channel) {
         return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
         }
@@ -29,8 +29,8 @@ module.exports = class PlayCommand extends Command {
         }
 
 
-        if(message.client.server.dispatcher) {
-            message.client.server.dispatcher.pause();
+        if(dispatcher) {
+          dispatcher.pause();
         }
 
         return message.say(" :pause_button: c'est mis en pause bg ");
