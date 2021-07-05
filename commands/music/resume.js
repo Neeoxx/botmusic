@@ -1,7 +1,7 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
 const {StreamDispatcher} = require('discord.js');
 
-module.exports = class ResumeCommand extends Command {
+module.exports = class PlayCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'resume',
@@ -30,7 +30,7 @@ module.exports = class ResumeCommand extends Command {
 
 
         if(dispatcher) {
-        dispatcher.continue();
+        dispatcher.resume();
         }
 
         return message.say(" En train de jouer :notes: ");
