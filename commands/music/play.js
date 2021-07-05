@@ -27,7 +27,7 @@ module.exports = class PlayCommand extends Command {
      * @param {CommandoMessage} message 
      * @param {string} query
      */
-    async run(message, {query}){
+    async run(message, { query }) {
         await message.member.voice.channel.join().then((connection) => {
             this.runVideo(message, connection, query);
         });
@@ -41,10 +41,9 @@ module.exports = class PlayCommand extends Command {
     async runVideo(message, connection, video) {
         const dispatcher = connection.play( await ytdl(video, {filter: 'audioonly'}), {type: 'opus'} );
 
-        message.client.server.dispatcher = dispatcher;
 
         dispatcher.on('finish', () => {
             message.member.voice.channel.leave();
-        })
+        });
     }
 }
