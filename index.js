@@ -17,20 +17,15 @@ client.registry
 
 client.server = {
     queue: [],
-    currentVideo: {title:"Rien pour le moment.", url:"" },
-    dispatcher: null,
-    connection: null
-    
+    currentVideo: {title:"", url: "" },
+    dispatcher: null
 };
 
 client.once('ready', () => {
     console.log(`Connecté en tant que ${client.user.tag} - (${client.user.id})`);
-});
-
-client.on("ready", () => {
     client.user.setStatus("online");
     client.user.setActivity("votre conversation", { type: "LISTENING" });
-  });
+});
 
 client.on('error', (error) => console.error(error));
 
