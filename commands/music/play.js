@@ -1,6 +1,7 @@
 const { VoiceConnection } = require('discord.js');
 const { Command, CommandoMessage } = require('discord.js-commando');
 const ytdl = require('ytdl-core-discord');
+const { UserNotInVoiceChannel } = require('../../strings.json');
 
 module.exports = class PlayCommand extends Command {
     constructor(client) {
@@ -28,7 +29,7 @@ module.exports = class PlayCommand extends Command {
         const server = message.client.server;
 
         if(!message.member.voice.channel) {
-            return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
+            return message.say(UserNotInVoiceChannel);
             }
 
         await message.member.voice.channel.join().then((connection) => {

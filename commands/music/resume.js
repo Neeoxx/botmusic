@@ -1,5 +1,7 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
-const {StreamDispatcher} = require('discord.js');
+const { StreamDispatcher } = require('discord.js');
+const { UserNotInVoiceChannel, BotNotInVoiceChannel } = require('../../strings.json');
+
 
 module.exports = class ResumeCommand extends Command {
     constructor(client) {
@@ -20,12 +22,14 @@ module.exports = class ResumeCommand extends Command {
          * @type StreamDispatcher
          */
         const dispatcher = message.client.server.dispatcher;
+
+
         if(!message.member.voice.channel) {
-        return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
+        return message.say(UserNotInVoiceChannel);
         }
 
         if(!message.client.voice.connections.first()) {
-            return message.say(" :x: Je ne suis pas connécté à un salon vocal. Tape `b!join` pour m'ajouter. ");
+            return message.say(BotNotInVoiceChannel);
         }
 
 
@@ -33,7 +37,7 @@ module.exports = class ResumeCommand extends Command {
             dispatcher.resume();
         }
 
-        return message.say(" :arrow_forward: ta musique est repris ! ");
+        return message.say("En train de jouer :notes: ");
     }
    
 }
