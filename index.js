@@ -25,6 +25,8 @@ client.server = {
 
 client.once('ready', () => {
     console.log(`Connecté en tant que ${client.user.tag} - (${client.user.id})`);
+    client.user.setStatus("online");
+    client.user.setActivity("votre conversation", { type: "LISTENING" });
 });
 
 client.on('error', (error) => console.error(error));
