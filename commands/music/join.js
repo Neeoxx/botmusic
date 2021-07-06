@@ -12,12 +12,12 @@ module.exports = class JoinCommand extends Command {
     /**
      * 
      * @param {CommandoMessage} message 
-     * @param {string} param1 
+     * @param {string} query
      */
     async run(message) {
         const voiceChannel = message.member.voice.channel;
 
-        if(!voiceChannel) {
+        if (!voiceChannel) {
         return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
         }
 

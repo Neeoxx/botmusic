@@ -20,12 +20,13 @@ module.exports = class PlayCommand extends Command {
          * @type StreamDispatcher
          */
         const dispatcher = message.client.server.dispatcher;
+        
         if(!message.member.voice.channel) {
         return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
         }
 
         if(!message.client.voice.connections.first()) {
-            return message.say(" :x: Je ne suis pas connEcté à un salon vocal. Tape `b!join` pour m'ajouter. ");
+            return message.say(" :x: Je ne suis pas connecté à un salon vocal. Tape `b/join` pour m'ajouter. ");
         }
 
 
