@@ -50,7 +50,7 @@ module.exports = class QueueCommand extends Command {
                 totalPages = Math.ceil(queueLength / numberOfItems);
             }
 
-            if(page < 0 || (page) > totalPages) {
+            if(page <=0 || (page) > totalPages) {
                 return message.say(":x: Cette page n'existe pas.");
             }
 
