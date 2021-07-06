@@ -13,7 +13,7 @@ module.exports = class ResumeCommand extends Command {
     /**
      * 
      * @param {CommandoMessage} message 
-     * @param {string} param1 
+     * @param {string} query
      */
     async run(message) {
         /**
