@@ -38,19 +38,20 @@ module.exports = class PlayCommand extends Command {
         await message.member.voice.channel.join().then((connection) => {
 
             
-            if(ytpl.validateID(term)){
+            if(ytpl.validateID(term)) {
                 // playlist.
                 ytpl(term).then((results) => {
+
                     results.items.forEach((video) => {
                         server.queue.push({title: video.title, url: video.shortUrl});
                     });
 
                     server.currentVideo = server.queue[0];
                     this.runVideo(message, connection).then(() => {
-                        message.say(":white_check_mark: `"+ results.items.length + "` musique dans la file d'attente");
+                        message.say(":white_check_mark: `"+ results.items.length + "` musiques dans la file d'attente")
                     });
                 })
-            }   else {
+            }  else {
 
                     //video.
                     ytsr(term, {key: process.env.KEY, maxResults: 1, type: 'video'}).then((results) => {
