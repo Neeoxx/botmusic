@@ -13,7 +13,7 @@ module.exports = class PlayCommand extends Command {
             description: 'joue de la musique depuis YT',
             args: [
                 {
-                    key: 'query',
+                    key: 'term',
                     prompt:'quel musique veux-tu lire ?',
                     type:'string'
                 }
@@ -26,7 +26,7 @@ module.exports = class PlayCommand extends Command {
      * @param {CommandoMessage} message 
      * @param {string} param1 
      */
-    async run(message, { query }) {
+    async run(message, { term }) {
         const server = message.client.server;
 
         if(!message.member.voice.channel) {
@@ -34,14 +34,23 @@ module.exports = class PlayCommand extends Command {
             }
 
         await message.member.voice.channel.join().then((connection) => {
-            if(server.currentVideo.url !="") {
-                server.queue.push({title:"", url: query });
-                return message.say(" Ajouter à la file d'attente ! ");
+
+            ytsr(term, {key: process.env.KEY, maxResults: 1, type: 'video'}).then((results) => {
+
+                if(results.results[0]) {
+                    const foundVideo = {url:results.results[0].link, title: results.results[0].title };
+                
+
+                if(server.currentVideo.url !="") {
+                    server.queue.push(foundVideo);
+                    return message.say("`" + foundVideo.title + "`" + " - Ajouté à la file d'attente ! ");
+                }
+
+                server.currentVideo = foundVideo;
+                this.runVideo(message, connection);
             }
+            });
 
-
-            server.currentVideo = {title:"", url: query }
-            this.runVideo(message, connection, query);
         });
 
     }
@@ -51,10 +60,10 @@ module.exports = class PlayCommand extends Command {
          * @param {VoiceConnection} connection 
          * @param {*} video 
          */
-        async runVideo(message, connection, videoUrl) {
+        async runVideo(message, connection) {
             const server = message.client.server;
             
-            const dispatcher = connection.play( await ytdl(videoUrl, { filter:'audioonly' }), {type: 'opus' } );
+            const dispatcher = connection.play(ytdl(server.currentVideo.url, { filter:'audioonly' }) );
 
             server.queue.shift();
             server.dispatcher = dispatcher;
@@ -67,7 +76,7 @@ module.exports = class PlayCommand extends Command {
                 }
             });
 
-            return message.say(" Entrain de jouer :notes:");
+            return message.say(" Entrain de jouer" + "`" + server.currentVideo.title + "`" + ":notes:");
         }
         
 }

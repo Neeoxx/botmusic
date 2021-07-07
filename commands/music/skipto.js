@@ -45,7 +45,7 @@ module.exports = class SkipToCommand extends Command {
 
         server.currentVideo = server.queue[index];
 
-        server.connection.play( await ytdl(server.currentVideo.url, { filter:'audioonly' }), {type: 'opus' } );
+        server.dispatcher = server.connection.play(ytdl(server.currentVideo.url, { filter:'audioonly' }) );
         server.queue.splice(index, 1);
 
         return message.say(" :fast_forward: musique ignoré ! :thumbsup: " );
