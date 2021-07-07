@@ -42,7 +42,7 @@ module.exports = class QueueCommand extends Command {
         var embed = new MessageEmbed()
         .setTitle(`File d'attente pour ${message.author.username} `)
         .setColor('BLUE')
-        .addField('En train de jouer: ', server.currentVideo.title);
+        .addField('En train de jouer: ', `[${server.currentVideo.title}]` + `(${server.currentVideo.url})`);
 
         if(queueLength > 0) {
             var value = "";
