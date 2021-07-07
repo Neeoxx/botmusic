@@ -1,5 +1,5 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 const { UserNotInVoiceChannel, BotNotInVoiceChannel } = require("../../strings.json");
 
 module.exports = class SkipToCommand extends Command {

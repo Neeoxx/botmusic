@@ -1,7 +1,8 @@
 const { VoiceConnection } = require('discord.js');
 const { Command, CommandoMessage } = require('discord.js-commando');
-const ytdl = require('ytdl-core-discord');
+const ytdl = require('ytdl-core');
 const { UserNotInVoiceChannel } = require('../../strings.json');
+const ytsr = require('youtube-search');
 
 module.exports = class PlayCommand extends Command {
     constructor(client) {
@@ -52,6 +53,7 @@ module.exports = class PlayCommand extends Command {
          */
         async runVideo(message, connection, videoUrl) {
             const server = message.client.server;
+            
             const dispatcher = connection.play( await ytdl(videoUrl, { filter:'audioonly' }), {type: 'opus' } );
 
             server.queue.shift();
