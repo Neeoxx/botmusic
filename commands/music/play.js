@@ -4,6 +4,7 @@ const ytdl = require('ytdl-core');
 const { UserNotInVoiceChannel } = require('../../strings.json');
 const ytsr = require('youtube-search');
 const ytpl = require("ytpl");
+const key = require(process.env.KEY);
 
 module.exports = class PlayCommand extends Command {
     constructor(client) {
@@ -54,7 +55,7 @@ module.exports = class PlayCommand extends Command {
             }  else {
 
                     //video.
-                    ytsr(term, {key: process.env.KEY, maxResults: 1, type: 'video'}).then((results) => {
+                    ytsr(term, {key: key, maxResults: 1, type: 'video'}).then((results) => {
 
                     if(results.results[0]) {
                         const foundVideo = {url:results.results[0].link, title: results.results[0].title };
