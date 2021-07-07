@@ -3,6 +3,7 @@ const { Command, CommandoMessage } = require('discord.js-commando');
 const ytdl = require('ytdl-core');
 const { UserNotInVoiceChannel } = require('../../strings.json');
 const ytsr = require('youtube-search');
+const ytpl = require("ytpl");
 
 module.exports = class PlayCommand extends Command {
     constructor(client) {
@@ -27,6 +28,7 @@ module.exports = class PlayCommand extends Command {
      * @param {string} param1 
      */
     async run(message, { term }) {
+        
         const server = message.client.server;
 
         if(!message.member.voice.channel) {
@@ -35,22 +37,38 @@ module.exports = class PlayCommand extends Command {
 
         await message.member.voice.channel.join().then((connection) => {
 
-            ytsr(term, {key: process.env.KEY, maxResults: 1, type: 'video'}).then((results) => {
+            
+            if(ytpl.validateID(term)){
+                // playlist.
+                ytpl(term).then((results) => {
+                    results.items.forEach((video) => {
+                        server.queue.push({title: video.title, url: video.shortUrl});
+                    });
 
-                if(results.results[0]) {
-                    const foundVideo = {url:results.results[0].link, title: results.results[0].title };
-                
+                    server.currentVideo = server.queue[0];
+                    this.runVideo(message, connection).then(() => {
+                        message.say(":white_check_mark: `"+ results.items.length + "` musique dans la file d'attente");
+                    });
+                })
+            }   else {
 
-                if(server.currentVideo.url !="") {
-                    server.queue.push(foundVideo);
-                    return message.say("`" + foundVideo.title + "`" + " - Ajouté à la file d'attente ! ");
-                }
+                    //video.
+                    ytsr(term, {key: process.env.KEY, maxResults: 1, type: 'video'}).then((results) => {
 
-                server.currentVideo = foundVideo;
-                this.runVideo(message, connection);
+                    if(results.results[0]) {
+                        const foundVideo = {url:results.results[0].link, title: results.results[0].title };
+                    
+    
+                    if(server.currentVideo.url !="") {
+                        server.queue.push(foundVideo);
+                        return message.say("`" + foundVideo.title + "`" + " - Ajouté à la file d'attente ! ");
+                    }
+    
+                    server.currentVideo = foundVideo;
+                    this.runVideo(message, connection);
+                    }
+                });
             }
-            });
-
         });
 
     }
