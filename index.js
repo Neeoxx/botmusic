@@ -17,8 +17,9 @@ client.registry
 
 client.server = {
     queue: [],
-    currentVideo: {title:"", url:"" },
-    dispatcher: null
+    currentVideo: {url:"", title:"Rien pour le moment."},
+    dispatcher: null,
+    connection: null
     
 };
 
