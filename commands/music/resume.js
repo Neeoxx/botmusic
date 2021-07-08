@@ -3,7 +3,7 @@ const { StreamDispatcher } = require('discord.js');
 const { UserNotInVoiceChannel, BotNotInVoiceChannel } = require('../../strings.json');
 
 
-module.exports = class ResumeCommand extends Command {
+module.exports = class PlayCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'resume',
