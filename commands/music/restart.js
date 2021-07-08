@@ -1,15 +1,13 @@
 const { Command, CommandoMessage } = require('discord.js-commando');
-const { StreamDispatcher } = require('discord.js');
-const { UserNotInVoiceChannel, BotNotInVoiceChannel } = require('../../strings.json');
+const {StreamDispatcher} = require('discord.js');
 
-
-module.exports = class ResumeCommand extends Command {
+module.exports = class RestartCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'resume',
+            name: 'restart',
             group: 'music',
-            memberName: 'resume',
-            description: 'remet en lecture ta musique',
+            memberName: 'restart',
+            description: 'remet ta musique au tout début',
         });
     }
     /**
@@ -22,22 +20,21 @@ module.exports = class ResumeCommand extends Command {
          * @type StreamDispatcher
          */
         const dispatcher = message.client.server.dispatcher;
-
-
+        
         if(!message.member.voice.channel) {
-        return message.say(UserNotInVoiceChannel);
+        return message.say(':x: tu dois être dans un salon vocal pour use cette commande. ');
         }
 
         if(!message.client.voice.connections.first()) {
-            return message.say(BotNotInVoiceChannel);
+            return message.say(" :x: Je ne suis pas connecté à un salon vocal. Tape `b/join` pour m'ajouter. ");
         }
 
 
         if(dispatcher) {
-            dispatcher.run();
+            dispatcher.restart();
         }
 
-        return message.say("En train de jouer :notes: ");
+        return message.say(" :pause_button: c'est mis en pause bg ");
     }
    
 }
