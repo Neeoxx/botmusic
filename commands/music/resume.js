@@ -21,9 +21,6 @@ module.exports = class ResumeCommand extends Command {
         /**
          * @type StreamDispatcher
          */
-        const dispatcher = message.client.server.dispatcher;
-
-
         if(!message.member.voice.channel) {
         return message.say(UserNotInVoiceChannel);
         }
@@ -33,8 +30,8 @@ module.exports = class ResumeCommand extends Command {
         }
 
 
-        if(dispatcher) {
-            dispatcher.run();
+        if(message.client.server.dispatcher) {
+            message.client.server.dispatcher.resume();
         }
 
         return message.say("En train de jouer :notes: ");
