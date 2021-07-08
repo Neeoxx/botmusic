@@ -3,7 +3,7 @@ const { StreamDispatcher } = require('discord.js');
 const { UserNotInVoiceChannel, BotNotInVoiceChannel } = require('../../strings.json');
 
 
-module.exports = class PlayCommand extends Command {
+module.exports = class ResumeCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'resume',
@@ -31,7 +31,7 @@ module.exports = class PlayCommand extends Command {
 
 
         if(message.client.server.dispatcher) {
-            message.client.server.dispatcher.play();
+            message.client.server.dispatcher.resume();
         }
 
         return message.say("En train de jouer :notes: ");
