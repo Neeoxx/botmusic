@@ -31,7 +31,7 @@ module.exports = class PlayCommand extends Command {
 
 
         if(message.client.server.dispatcher) {
-            message.client.server.dispatcher.resume();
+            message.client.server.dispatcher.play();
         }
 
         return message.say("En train de jouer :notes: ");
